@@ -62,44 +62,13 @@ export default async function ProjectPage({ params }: { params: { slug: string }
   const content = extractBodyContent(post.html);
 
   return (
-    <main>
-      <div className="bg-background/80 backdrop-blur-sm sticky top-0 z-20 p-2 border-b">
-        <div className="container mx-auto flex justify-between items-center">
-          <Link href="/" passHref>
-            <Button variant="ghost">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Posts
-            </Button>
-          </Link>
-          <div className="hidden sm:flex items-center gap-2">
-            <span className="text-sm text-muted-foreground">{post.author}</span>
-            <Badge variant="secondary">{post.readtime}</Badge>
-          </div>
-        </div>
-      </div>
-
-      {summary && (
-        <div className="py-8 bg-secondary border-b">
-          <div className="container mx-auto px-4">
-            <Card className="shadow-sm">
-              <CardHeader className="flex flex-row items-start gap-4 space-y-0">
-                <div className="bg-primary/10 p-2 rounded-full">
-                  <BrainCircuit className="w-6 h-6 text-primary" />
-                </div>
-                <div className="flex-1">
-                  <CardTitle className="font-headline text-2xl">AI-Generated Summary</CardTitle>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">{summary}</p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      )}
-
+    <main className="w-screen h-screen">
       {/* Render the HTML content from Supabase */}
-      <div className="prose-styles" dangerouslySetInnerHTML={{ __html: content }} />
+      <iframe
+        title={post.title}
+        srcDoc={content}
+        className="w-full h-full border-none"
+      />
     </main>
   );
 }

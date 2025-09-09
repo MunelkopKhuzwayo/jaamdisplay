@@ -10,7 +10,7 @@ export const revalidate = 3600;
 
 async function getPosts(): Promise<Pick<Post, 'id' | 'slug' | 'title' | 'summary'>[]> {
   const { data, error } = await supabase
-    .from('posts')
+    .from('postsjosh')
     .select('id, slug, title, summary, published_at')
     .order('published_at', { ascending: false });
 
@@ -27,10 +27,7 @@ export default async function Home() {
   return (
     <div className="container mx-auto px-4 py-12 sm:py-16">
       <header className="text-center mb-12">
-        <h1 className="text-4xl md:text-6xl font-headline font-bold text-primary">Supabase CMS Display</h1>
-        <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-          A collection of articles, insights, and stories powered by a headless Supabase CMS.
-        </p>
+        <h1 className="text-4xl md:text-6xl font-headline font-bold text-primary">Jaam</h1>
       </header>
 
       {posts.length > 0 ? (
@@ -57,7 +54,7 @@ export default async function Home() {
         <div className="text-center py-20 bg-secondary rounded-lg">
           <h2 className="text-2xl font-headline">No Posts Found</h2>
           <p className="text-muted-foreground mt-2">
-            Please check your Supabase connection or add some posts to the 'posts' table.
+            Please check your Supabase connection or add some posts to the 'postsjosh' table.
           </p>
         </div>
       )}

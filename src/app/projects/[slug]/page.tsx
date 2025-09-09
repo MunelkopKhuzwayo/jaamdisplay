@@ -14,7 +14,7 @@ export const revalidate = 3600;
 // Generate static paths at build time for better performance
 export async function generateStaticParams() {
   try {
-    const { data: posts } = await supabase.from('posts').select('slug');
+    const { data: posts } = await supabase.from('postsjosh').select('slug');
     return posts?.map(({ slug }) => ({ slug })) || [];
   } catch (error) {
     console.error('Failed to generate static params:', error);
@@ -23,7 +23,7 @@ export async function generateStaticParams() {
 }
 
 async function getPost(slug: string): Promise<Post | null> {
-  const { data, error } = await supabase.from('posts').select('*').eq('slug', slug).single();
+  const { data, error } = await supabase.from('postsjosh').select('*').eq('slug', slug).single();
 
   if (error || !data) {
     // This will be caught by Next.js and trigger a 404
